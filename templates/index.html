@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b39">
+  <meta name="description" content="Meet Cooler Bot, a Khmer and English Telegram assistant from Team Smos Snae.">
+  <title>Cooler Bot — Telegram Assistant</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #eef8f7;
+      --muted: #b7cbc9;
+      --panel: rgba(255, 255, 255, .075);
+      --line: rgba(255, 255, 255, .14);
+      --mint: #9ce6ce;
+      --deep: #102b39;
+      --blue: #1a4653;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 85% 8%, rgba(124, 221, 190, .18), transparent 34rem),
+        linear-gradient(145deg, var(--deep), #0b202d 70%);
+      font-family: Inter, "Noto Sans Khmer", "Khmer OS System", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+    .shell { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    header { padding: 26px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 750; letter-spacing: .02em; }
+    .brand-mark {
+      display: grid; width: 38px; height: 38px; place-items: center;
+      color: #102b39; background: var(--mint); border-radius: 12px; font-size: 20px;
+    }
+
+    main { padding: 76px 0 90px; }
+    .hero { max-width: 760px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; padding: 6px 12px;
+      color: var(--mint); border: 1px solid var(--line); border-radius: 999px;
+      background: rgba(255, 255, 255, .04); font-size: 14px;
+    }
+    h1 { margin: 22px 0 12px; font-size: clamp(3rem, 8vw, 5.6rem); line-height: .98; letter-spacing: -.055em; }
+    .lead { max-width: 690px; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2.5vw, 1.3rem); }
+    .lead .kh { display: block; margin-bottom: 8px; color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; align-items: center; }
+    .button {
+      display: inline-flex; min-height: 48px; align-items: center; justify-content: center;
+      padding: 0 19px; border-radius: 13px; background: var(--mint); color: #102b39;
+      text-decoration: none; font-weight: 750;
+    }
+    .pending { color: var(--muted); font-size: 14px; }
+    .section-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; align-items: end; margin: 76px 0 20px; }
+    h2 { margin: 0; font-size: clamp(1.6rem, 4vw, 2rem); letter-spacing: -.025em; }
+    .section-head p { margin: 0; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+    .card {
+      min-height: 180px; padding: 22px; border: 1px solid var(--line);
+      border-radius: 18px; background: var(--panel);
+    }
+    .icon { font-size: 25px; }
+    .card h3 { margin: 12px 0 6px; font-size: 1.12rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .96rem; }
+    .note {
+      margin-top: 18px; padding: 17px 20px; border-left: 3px solid var(--mint);
+      border-radius: 0 12px 12px 0; background: rgba(156, 230, 206, .07);
+      color: var(--muted); font-size: .92rem;
+    }
+    footer { padding: 22px 0 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+    @media (max-width: 760px) {
+      main { padding: 48px 0 64px; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-head { margin-top: 58px; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 28px, 1080px); }
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      h1 { letter-spacing: -.04em; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell">
+    <a class="brand" href="/" aria-label="Cooler Bot home">
+      <span class="brand-mark" aria-hidden="true">❄</span>
+      <span>Cooler Bot</span>
+    </a>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <span class="eyebrow">Telegram assistant <span aria-hidden="true">·</span> Team ស្មោះស្នេហ៍</span>
+      <h1 id="hero-title">Cooler Bot</h1>
+      <p class="lead">
+        <span class="kh" lang="km">ជំនួយការតេឡេក្រាមសម្រាប់ជជែកជាភាសាខ្មែរ និងអង់គ្លេស ព្រមទាំងជួយកិច្ចការប្រចាំថ្ងៃ។</span>
+        A Telegram assistant for Khmer and English conversations, with useful tools for everyday tasks.
+      </p>
+      <div class="actions">
+        {% if telegram_bot_url %}
+          <a class="button" href="{{ telegram_bot_url }}" target="_blank" rel="noopener noreferrer">បើកក្នុង Telegram · Open in Telegram ↗</a>
+        {% else %}
+          <span class="pending">Telegram link will appear here when configured.</span>
+        {% endif %}
+      </div>
+    </section>
+
+    <section aria-labelledby="features-title">
+      <div class="section-head">
+        <h2 id="features-title">អ្វីដែល Cooler Bot អាចជួយបាន</h2>
+        <p>What Cooler Bot can help with</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="icon" aria-hidden="true">💬</span>
+          <h3>AI chat &amp; voice</h3>
+          <p lang="km">ជជែក និងប្រើមុខងារសំឡេង ជាភាសាខ្មែរ ឬអង់គ្លេស។</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">🖼️</span>
+          <h3>Image help</h3>
+          <p lang="km">វិភាគរូបភាព និងបង្កើតរូបថតតាមមុខងារ Photo Studio។</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">📍</span>
+          <h3>Fuel &amp; EV locations</h3>
+          <p lang="km">ស្វែងរកស្ថានីយប្រេងឥន្ធនៈ និងកន្លែងសាករថយន្តអគ្គិសនី។</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">🌿</span>
+          <h3>Daily Care</h3>
+          <p lang="km">ជ្រើសរើសទទួលសារថែទាំប្រចាំថ្ងៃតាមចំណូលចិត្តរបស់អ្នក។</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">🌐</span>
+          <h3>Khmer &amp; English</h3>
+          <p lang="km">រចនាឡើងសម្រាប់ការជជែកទាំងភាសាខ្មែរ និងអង់គ្លេស។</p>
+        </article>
+        <article class="card">
+          <span class="icon" aria-hidden="true">🔒</span>
+          <h3>Private bot data</h3>
+          <p lang="km">គេហទំព័រនេះមិនភ្ជាប់ទៅមូលដ្ឋានទិន្នន័យឯកជនរបស់ Telegram bot ទេ។</p>
+        </article>
+      </div>
+      <p class="note">
+        <span lang="km">មុខងារ AI សំឡេង និងរូបភាពអាស្រ័យលើសេវា និង API ដែលបានកំណត់រួច និងកំពុងដំណើរការ។</span>
+        AI, voice, and image features depend on their configured services being available.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Cooler Bot <span aria-hidden="true">·</span> Team ស្មោះស្នេហ៍</div>
+  </footer>
+</body>
+</html>
